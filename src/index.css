@@ -11,3 +11,17 @@ html {
     margin: 0;
     padding: 0;
 }
+
+#root {
+    background-color: #211e26;
+    color: #f0f7ee;
+    min-height: 100vh;
+    padding: 2em 1em .5em 1em;
+}
+    @media (min-width: 540px) {
+        #app {
+            margin: 0 auto;
+            max-width: 540px;
+            width: 70%;
+        }
+    }

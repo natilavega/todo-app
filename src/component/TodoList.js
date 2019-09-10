@@ -1,17 +1,24 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
 
 const TodoList = ({ todos, deleteTodo }) => {
 
     const todoList = todos.length ? (
         todos.map(todo => {
             return (
-                <div key={todo.id}>
-                    <span onClick={() => { deleteTodo(todo.id) }}>{todo.content}</span>
-                </div>
+                <ul id="todo" key={todo.id}>
+                    <li onClick={() => { deleteTodo(todo.id) }}>{todo.content}</li>
+                </ul>
             )
         })
     ) : (
-            <p>No hay tareas pendientes.</p>
+            <div id="empty">
+                <p>No hay tareas pendientes.</p>
+                <div>
+                    <FontAwesomeIcon icon={faClipboardCheck} />
+                </div>
+            </div>
         );
 
     return (

@@ -1,0 +1,65 @@
+button:hover,
+button:active,
+button:focus,
+input:hover,
+input:active,
+input:focus {
+    outline: 0;
+}
+
+form {
+    border-bottom: 2px solid #8cabbe;
+    margin-bottom: 3em;
+    padding-bottom: .75em;
+}
+form label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: .75em;
+}
+form input {
+    background: transparent;
+    border: none;
+    color: #f0f7ee;
+    padding: 5px;
+    width: 90%;
+}
+form button {
+    background: transparent;
+    border: none;
+    color: #8cabbe;
+    font-size: 20px;
+    text-align: right;
+    width: 10%;
+}
+    form button:hover {
+        color: #f0f7ee;
+    }
+
+#empty {
+    text-align: center;
+}
+#empty p {
+    margin-bottom: 1em;
+}
+#empty div {
+    color: rgba(140,171,190,.2);
+    font-size: 250px;
+}
+
+#todo {
+    margin: .25em 0;
+    padding: 1em;
+}
+#todo:nth-child(odd) {
+    background: rgba(164,191,235,.75);
+}
+    #todo:nth-child(odd):hover{
+        background: rgb(164,191,235);
+    }
+#todo:nth-child(even) {
+    background: rgba(164,168,209,.75);
+}
+    #todo:nth-child(even):hover {
+        background: rgb(164,168,209);
+    }

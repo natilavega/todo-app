@@ -43,7 +43,7 @@ form button {
     margin-bottom: 1em;
 }
 #empty div {
-    color: rgba(140,171,190,.2);
+    color: rgba(140,171,190,.05);
     font-size: 250px;
 }
 
@@ -63,3 +63,17 @@ form button {
     #todo:nth-child(even):hover {
         background: rgb(164,168,209);
     }
+
+.fadeIn {
+  -webkit-animation: fadeIn 2s linear;
+  animation: fadeIn 2s linear;
+  opacity: 1;
+}
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

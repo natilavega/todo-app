@@ -1,0 +1,12 @@
+NEW (Feb 2022)
+- rediseñar empty state.                  x
+- nombre de proyecto.
+- agregar autenticación Firebase.
+- actualizar ReadMe.
+- agregar crédito.
+
+
+- anidar tareas.
+- efecto de tachar tarea realizada.
+- registro de tareas anteriores: diferenciar entre realizadas y eliminadas.
+- light mode.

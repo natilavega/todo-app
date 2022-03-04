@@ -1,27 +1,43 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
-    font-family: 'Montserrat', sans-serif;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  box-sizing: inherit;
+  font-family: 'Montserrat', sans-serif;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button:hover,
+button:active,
+button:focus,
+input:hover,
+input:active,
+input:focus {
+  outline: 0;
 }
 
 #root {
-    background-color: #211e26;
-    color: #f0f7ee;
-    min-height: 100vh;
-    padding: 2em 1em .5em 1em;
+  background-color: #211e26;
+  color: #f0f7ee;
+  min-height: 100vh;
+  padding: 2em 1em 0.5em 1em;
 }
-    @media (min-width: 540px) {
-        #app {
-            margin: 0 auto;
-            max-width: 540px;
-            width: 70%;
-        }
-    }
+@media (min-width: 540px) {
+  #app {
+    margin: 0 auto;
+    max-width: 540px;
+    width: 70%;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}

@@ -1,0 +1,20 @@
+h6 {
+  font-size: 20px;
+  margin-bottom: 3em;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid #8cabbe;
+  color: #8cabbe;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  padding: 1em 0;
+  width: 100%;
+}
+button:visited,
+button:hover {
+  background-color: #8cabbe;
+  color: #211e26;
+}

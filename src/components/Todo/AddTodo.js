@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './TodoApp.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -28,16 +29,18 @@ class AddTodo extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form className='add-todo' onSubmit={this.handleSubmit}>
           <label>Nueva tarea:</label>
-          <input
-            type='text'
-            onChange={this.handleChange}
-            value={this.state.content}
-          />
-          <button type='submit'>
-            <FontAwesomeIcon icon={faPlus} />
-          </button>
+          <div className='add-todo_row'>
+            <input
+              type='text'
+              onChange={this.handleChange}
+              value={this.state.content}
+            />
+            <button type='submit'>
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+          </div>
         </form>
       </div>
     );

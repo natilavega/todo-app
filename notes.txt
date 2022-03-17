@@ -1,17 +1,19 @@
-NEW (Feb 2022)
+v2 (Feb/Mar 2022)
 - rediseñar empty state.                  x
 - nombre de proyecto.                     x
 - agregar base de datos Firebase.         x
-- agregar autenticación Firebase.
+- agregar autenticación Firebase.         x
 - actualizar ReadMe.
-- agregar crédito.
+- cargando.                               x
 
+v3
+- unsubscribe to snapshot.
+- english version.
+- login with email and password.
 
+NEXT
 - anidar tareas.
 - efecto de tachar tarea realizada.
 - registro de tareas anteriores: diferenciar entre realizadas y eliminadas.
 - light mode.
 - inicio con logo.
-- cargando.
-
-npm install react-router-dom@6

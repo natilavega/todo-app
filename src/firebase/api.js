@@ -3,13 +3,15 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import {
   collection,
   doc,
-  setDoc,
-  deleteDoc,
   query,
   where,
+  onSnapshot,
   getDocs,
   getDoc,
-  onSnapshot,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
 
 // Google provider
@@ -21,11 +23,18 @@ export const signInWithGoogle = async () => {
     const result = await signInWithPopup(auth, googleProvider);
     const user = result.user;
     // check if user is already registered in db
-    const q = query(collection(db, 'users'), where('uid', '==', user.uid));
-    const docs = await getDocs(q);
-    if (docs.docs.length === 0) {
+    //const q = query(collection(db, 'users'), where('uid', '==', user.uid));
+    const docRef = doc(db, 'users', user.uid);
+
+    const snapshot = await getDoc(docRef);
+
+    if (!snapshot.data()) {
+      console.log('no existe');
       setUser(user);
     }
+    /*if (docs.docs.length === 0) {
+      setUser(user);
+    }*/
   } catch (error) {
     console.log(error.message);
   }
@@ -36,19 +45,22 @@ const setUser = (user) => {
   const docRef = doc(db, 'users', user.uid);
 
   setDoc(docRef, {
-    name: user.displayName,
-    authProvider: 'google',
-    email: user.email,
-    photo: user.photoURL,
+    auth: {
+      name: user.displayName,
+      authProvider: 'google',
+      email: user.email,
+      photo: user.photoURL,
+    },
+    todos: [],
   });
 };
 
-// get current user data
-export const getUserData = async (id) => {
-  const userRef = doc(db, 'users', id);
+// get current user data in realtime
+export const getUserData = (uid, callback) => {
+  const userRef = doc(db, 'users', uid);
 
-  const data = await getDoc(userRef);
-  return data;
+  const unsub = onSnapshot(userRef, callback);
+  return unsub;
 };
 
 // log out
@@ -56,27 +68,20 @@ export const logout = () => {
   signOut(auth);
 };
 
-// collection ref
-const colRef = collection(db, 'todos');
+// add todo
+export const addData = async (uid, todoId, content) => {
+  const todoRef = doc(db, 'users', uid);
 
-// realtime collection data
-export const getData = (callback) => {
-  const unsub = onSnapshot(colRef, callback);
-  return unsub;
-};
-
-// add docs
-export const addData = (id, content) => {
-  const docRef = doc(db, 'todos', id);
-
-  setDoc(docRef, {
-    content,
+  await updateDoc(todoRef, {
+    todos: arrayUnion({ id: todoId, todo: content }),
   });
 };
 
-// delete docs
-export const deleteData = (id) => {
-  const docRef = doc(db, 'todos', id);
+// delete todo
+export const deleteData = async (uid, todo) => {
+  const todoRef = doc(db, 'users', uid);
 
-  deleteDoc(docRef);
+  await updateDoc(todoRef, {
+    todos: arrayRemove({ id: todo.id, todo: todo.todo }),
+  });
 };

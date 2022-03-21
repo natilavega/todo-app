@@ -6,8 +6,11 @@ import { getUserData, logout, addData, deleteData } from '../../firebase/api';
 import AddTodo from './AddTodo';
 import './TodoApp.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSignOutAlt,
+  faClipboardCheck,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 
 const TodoApp = () => {
   const navigate = useNavigate();
@@ -65,7 +68,11 @@ const TodoApp = () => {
       ) : (
         <>
           <div className='profile'>
-            <img src={userData.photo} alt='' className='profile-pic' />
+            {userData.photo ? (
+              <img src={userData.photo} alt='' className='profile-pic' />
+            ) : (
+              <FontAwesomeIcon icon={faUser} />
+            )}
             <div className='profile-name'>{userData.name}</div>
             <button className='logout' onClick={logout}>
               <FontAwesomeIcon icon={faSignOutAlt} />

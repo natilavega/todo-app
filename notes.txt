@@ -3,13 +3,14 @@ v2 (Feb/Mar 2022)
 - nombre de proyecto.                     x
 - agregar base de datos Firebase.         x
 - agregar autenticación Firebase.         x
-- actualizar ReadMe.
 - cargando.                               x
 
 v3
+- login with email and password.          x
+- actualizar ReadMe.
+- functional components.
 - unsubscribe to snapshot.
 - english version.
-- login with email and password.
 
 NEXT
 - anidar tareas.

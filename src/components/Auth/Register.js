@@ -4,11 +4,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   signInWithGoogle,
-  logInWithEmailAndPassword,
+  registerWithEmailAndPassword,
 } from '../../firebase/api';
 import './Login.css';
 
-const Login = () => {
+const Register = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user] = useAuthState(auth);
@@ -18,15 +19,24 @@ const Login = () => {
     if (user) return navigate('/tareas');
   }, [user]);
 
-  const login = () => {
-    logInWithEmailAndPassword(email, password);
+  const register = () => {
+    if (!name) alert('Por favor ingresa tu nombre.');
+    registerWithEmailAndPassword(name, email, password);
   };
 
   return (
     <>
-      <h6 className='page-title'>Inicio de Sesión</h6>
+      <h6 className='page-title'>Registro</h6>
 
       <div className='form-group'>
+        <div className='input-group login-group'>
+          <label>Nombre:</label>
+          <input
+            type='text'
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+        </div>
         <div className='input-group login-group'>
           <label>Correo electrónico:</label>
           <input
@@ -43,12 +53,13 @@ const Login = () => {
             value={password}
           />
         </div>
-        <button className='login-btn' onClick={login}>
-          Iniciar Sesión
+
+        <button className='login-btn' onClick={register}>
+          Registrarse
         </button>
 
         <div className='login-switch'>
-          ¿No tienes cuenta? <Link to='/registro'>Registrarse</Link>
+          ¿Ya tienes cuenta? <Link to='/'>Iniciar sesión</Link>
         </div>
       </div>
 
@@ -59,4 +70,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

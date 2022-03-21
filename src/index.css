@@ -41,3 +41,14 @@ input:focus {
   align-items: center;
   min-height: 80vh;
 }
+
+.form-group {
+  border-bottom: 2px solid #8cabbe;
+  margin-bottom: 3em;
+  padding-bottom: 3em;
+}
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 0.75em;
+}

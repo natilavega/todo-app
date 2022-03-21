@@ -1,12 +1,14 @@
 import { db, auth } from './config';
-import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import {
-  collection,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth';
+import {
   doc,
-  query,
-  where,
   onSnapshot,
-  getDocs,
   getDoc,
   setDoc,
   updateDoc,
@@ -23,25 +25,20 @@ export const signInWithGoogle = async () => {
     const result = await signInWithPopup(auth, googleProvider);
     const user = result.user;
     // check if user is already registered in db
-    //const q = query(collection(db, 'users'), where('uid', '==', user.uid));
     const docRef = doc(db, 'users', user.uid);
-
     const snapshot = await getDoc(docRef);
 
     if (!snapshot.data()) {
       console.log('no existe');
-      setUser(user);
+      setGoogleUser(user);
     }
-    /*if (docs.docs.length === 0) {
-      setUser(user);
-    }*/
   } catch (error) {
     console.log(error.message);
   }
 };
 
-// create new user in db
-const setUser = (user) => {
+// create Google user in db
+const setGoogleUser = (user) => {
   const docRef = doc(db, 'users', user.uid);
 
   setDoc(docRef, {
@@ -50,6 +47,44 @@ const setUser = (user) => {
       authProvider: 'google',
       email: user.email,
       photo: user.photoURL,
+    },
+    todos: [],
+  });
+};
+
+// log in with email and password
+export const logInWithEmailAndPassword = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+// register with email and password
+export const registerWithEmailAndPassword = async (name, email, password) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
+        console.log(userCredential.user);
+        setLocalUser(userCredential.user, name);
+      }
+    );
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+// create Local user in db
+const setLocalUser = (user, name) => {
+  const docRef = doc(db, 'users', user.uid);
+
+  setDoc(docRef, {
+    auth: {
+      name,
+      authProvider: 'local',
+      email: user.email,
+      photo: null,
     },
     todos: [],
   });

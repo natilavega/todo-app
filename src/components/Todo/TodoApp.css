@@ -16,6 +16,7 @@
   width: 80%;
 }
 .logout {
+  background-color: transparent;
   border: none;
   color: #f0f7ee;
   font-size: 1.25em;
@@ -27,19 +28,7 @@
 .add-todo {
   border-bottom: 2px solid #8cabbe;
   margin-bottom: 3em;
-  padding-bottom: 0.75em;
-}
-.add-todo label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 0.75em;
-}
-.add-todo_row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 3em;
+  padding-bottom: 1.5em;
 }
 .add-todo_row input {
   background: transparent;

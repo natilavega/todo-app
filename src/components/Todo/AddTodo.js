@@ -30,16 +30,18 @@ class AddTodo extends Component {
     return (
       <div>
         <form className='add-todo' onSubmit={this.handleSubmit}>
-          <label>Nueva tarea:</label>
-          <div className='add-todo_row'>
-            <input
-              type='text'
-              onChange={this.handleChange}
-              value={this.state.content}
-            />
-            <button type='submit'>
-              <FontAwesomeIcon icon={faPlus} />
-            </button>
+          <div className='input-group'>
+            <label>Nueva tarea:</label>
+            <div className='add-todo_row'>
+              <input
+                type='text'
+                onChange={this.handleChange}
+                value={this.state.content}
+              />
+              <button type='submit'>
+                <FontAwesomeIcon icon={faPlus} />
+              </button>
+            </div>
           </div>
         </form>
       </div>

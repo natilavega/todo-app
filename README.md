@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# toodo app
 
-## Available Scripts
+**Not so classic CRUD app.**
 
-In the project directory, you can run:
+Designed and developed by Nati Lavega.
 
-### `npm start`
+See it live [here](https://toodo.surge.sh/).
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img height="500" src="https://user-images.githubusercontent.com/35309830/160416674-6915c022-f568-45ae-8712-1515d014e536.png" />
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## About the project
 
-### `npm test`
+**tododo** is a to-do list web application. It allows users to add and remove items from the list with a few clicks.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The project is developed in **React**. It uses [React Hooks](https://reactjs.org/docs/hooks-intro.html), [React Router](https://reactrouter.com/), and [Firebase](https://firebase.google.com/) services.
 
-### `npm run build`
+**Authentication**: To enter, users can create an account with email and password or sign in with their Google account.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Firestore**: The connection with the database in real-time allows each user to work with their own data and have the information always available.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The [config.js](./src/firebase/config.js) file contains all the Firebase configurations. The [api.js](./src/firebase/api.js) file handles all connections to the server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+##### React
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+##### Create React App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Analyzing the Bundle Size
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+##### Firebase
 
-### Making a Progressive Web App
+Learn more about the realtime database, authentication, and other Firebase services in the [Firebase documentation](https://firebase.google.com/docs).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+##### Surge
 
-### Advanced Configuration
+This project was deplored for free with [Surge](https://surge.sh/).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Learn more in the [Surge documentation](https://surge.sh/help/).
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Contact
 
-### `npm run build` fails to minify
+Lets chat! Ideas, comments, suggestions, contact me at [LinkedIn](https://www.linkedin.com/in/natilavega/) or [Twitter](https://twitter.com/natilavega).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+To see my work, check my [portfolio](https://natilavega.github.io/).

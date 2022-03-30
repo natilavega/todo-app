@@ -46,7 +46,7 @@ const TodoApp = () => {
   const addTodo = (newTodo) => {
     let todoId = Date.now().toString();
 
-    addData(uid, todoId, newTodo.content);
+    addData(uid, todoId, newTodo);
   };
 
   const showTodos = todos.map((todo) => {

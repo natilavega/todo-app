@@ -1,52 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './TodoApp.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-class AddTodo extends Component {
-  state = {
-    content: '',
+const AddTodo = ({ addTodo }) => {
+  const [content, setContent] = useState('');
+
+  const handleChange = (e) => {
+    setContent(e.target.value);
   };
 
-  handleChange = (e) => {
-    this.setState({
-      content: e.target.value,
-    });
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const content = this.state.content.trim();
+    content.trim();
     if (content) {
-      this.props.addTodo(this.state);
+      addTodo(content);
     }
-    this.setState({
-      content: '',
-    });
+    setContent('');
   };
 
-  render() {
-    return (
-      <div>
-        <form className='add-todo' onSubmit={this.handleSubmit}>
-          <div className='input-group'>
-            <label>Nueva tarea:</label>
-            <div className='add-todo_row'>
-              <input
-                type='text'
-                onChange={this.handleChange}
-                value={this.state.content}
-              />
-              <button type='submit'>
-                <FontAwesomeIcon icon={faPlus} />
-              </button>
-            </div>
+  return (
+    <div>
+      <form className='add-todo' onSubmit={handleSubmit}>
+        <div className='input-group'>
+          <label>Nueva tarea:</label>
+          <div className='add-todo_row'>
+            <input type='text' onChange={handleChange} value={content} />
+            <button type='submit'>
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
           </div>
-        </form>
-      </div>
-    );
-  }
-}
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default AddTodo;

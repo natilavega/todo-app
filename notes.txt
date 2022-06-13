@@ -10,7 +10,12 @@ v3
 - actualizar ReadMe.                      x
 - functional components.                  x
 - unsubscribe to snapshot.
-- english version.
+
+v4 (Jun 2022)
+- update packages.                        x
+- redirect routes.
+- Firebase context.
+
 
 NEXT
 - anidar tareas.

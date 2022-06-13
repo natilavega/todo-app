@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from '../../firebase/config';
+import { auth } from '../../lib/config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   signInWithGoogle,
   logInWithEmailAndPassword,
-} from '../../firebase/api';
-import './Login.css';
+} from '../../services/firebase';
+import '../../styles/Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');

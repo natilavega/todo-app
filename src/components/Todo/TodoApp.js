@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase/config';
-import { getUserData, logout, addData, deleteData } from '../../firebase/api';
+import { auth } from '../../lib/config';
+import {
+  getUserData,
+  logout,
+  addData,
+  deleteData,
+} from '../../services/firebase';
 import AddTodo from './AddTodo';
-import './TodoApp.css';
+import '../../styles/TodoApp.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSignOutAlt,

@@ -1,4 +1,4 @@
-import { db, auth } from './config';
+import { db, auth } from '../lib/config';
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,

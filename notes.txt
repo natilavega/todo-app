@@ -13,8 +13,8 @@ v3
 
 v4 (Jun 2022)
 - update packages.                        x
-- redirect routes.
-- Firebase context.
+- Firebase context.                       x
+- redirect routes.                        x
 
 
 NEXT

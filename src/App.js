@@ -1,20 +1,34 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
+import UserContext from './contexts/user';
+import useAuthListener from './hooks/useAuthListener';
 import TodoApp from './components/Todo/TodoApp';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 
 const App = () => {
+  const { user } = useAuthListener();
+
   return (
-    <div id='app'>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Login />} />
-          <Route exact path='/registro' element={<Register />} />
-          <Route exact path='/tareas' element={<TodoApp />} />
-        </Routes>
-      </Router>
-    </div>
+    <UserContext.Provider value={{ user }}>
+      <div id='app'>
+        <Router>
+          <Routes>
+            <Route path='/' element={user ? <TodoApp /> : <Login />} />
+            <Route
+              exact
+              path='/registro'
+              element={!user ? <Register /> : <Navigate to='/' replace />}
+            />
+          </Routes>
+        </Router>
+      </div>
+    </UserContext.Provider>
   );
 };
 

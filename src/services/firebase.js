@@ -8,8 +8,12 @@ import {
 } from 'firebase/auth';
 import {
   doc,
+  collection,
+  where,
+  query,
   onSnapshot,
   getDoc,
+  getDocs,
   setDoc,
   updateDoc,
   arrayUnion,
@@ -21,19 +25,14 @@ const googleProvider = new GoogleAuthProvider();
 
 // sign in with Google
 export const signInWithGoogle = async () => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    const user = result.user;
-    // check if user is already registered in db
-    const docRef = doc(db, 'users', user.uid);
-    const snapshot = await getDoc(docRef);
+  const result = await signInWithPopup(auth, googleProvider);
+  const user = result.user;
+  // check if user is already registered in db
+  const docRef = doc(db, 'users', user.uid);
+  const snapshot = await getDoc(docRef);
 
-    if (!snapshot.data()) {
-      console.log('no existe');
-      setGoogleUser(user);
-    }
-  } catch (error) {
-    console.log(error.message);
+  if (!snapshot.data()) {
+    setGoogleUser(user);
   }
 };
 
@@ -42,50 +41,37 @@ const setGoogleUser = (user) => {
   const docRef = doc(db, 'users', user.uid);
 
   setDoc(docRef, {
-    auth: {
-      name: user.displayName,
-      authProvider: 'google',
-      email: user.email,
-      photo: user.photoURL,
-    },
+    name: user.displayName,
+    authProvider: 'google',
+    email: user.email,
+    photo: user.photoURL,
     todos: [],
   });
 };
 
 // log in with email and password
-export const logInWithEmailAndPassword = async (email, password) => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.log(error.message);
-  }
+export const LoginWithEmail = async (email, password) => {
+  await signInWithEmailAndPassword(auth, email, password);
 };
 
-// register with email and password
-export const registerWithEmailAndPassword = async (name, email, password) => {
-  try {
-    await createUserWithEmailAndPassword(auth, email, password).then(
-      (userCredential) => {
-        console.log(userCredential.user);
-        setLocalUser(userCredential.user, name);
-      }
-    );
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// sign up with email and password
+export async function signUpWithEmail(name, email, password) {
+  await createUserWithEmailAndPassword(auth, email, password).then(
+    (userCredential) => {
+      setLocalUser(userCredential.user, name);
+    }
+  );
+}
 
 // create Local user in db
 const setLocalUser = (user, name) => {
   const docRef = doc(db, 'users', user.uid);
 
   setDoc(docRef, {
-    auth: {
-      name,
-      authProvider: 'local',
-      email: user.email,
-      photo: null,
-    },
+    name,
+    authProvider: 'local',
+    email: user.email,
+    photo: null,
     todos: [],
   });
 };

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,8 +7,8 @@ import {
 import UserContext from './contexts/user';
 import useAuthListener from './hooks/useAuthListener';
 import TodoApp from './components/Todo/TodoApp';
-import Login from './components/Auth/Login';
-import Register from './components/Auth/Register';
+import LoginPage from './pages/loginPage';
+import SignUpPage from './pages/signUpPage';
 
 const App = () => {
   const { user } = useAuthListener();
@@ -19,11 +18,34 @@ const App = () => {
       <div id='app'>
         <Router>
           <Routes>
-            <Route path='/' element={user ? <TodoApp /> : <Login />} />
+            <Route
+              path='/'
+              element={
+                user ? (
+                  <Navigate to='/tareas' replace />
+                ) : (
+                  <Navigate to='/inicio-de-sesion' replace />
+                )
+              }
+            />
+            <Route
+              exact
+              path='/inicio-de-sesion'
+              element={
+                !user ? <LoginPage /> : <Navigate to='/tareas' replace />
+              }
+            />
             <Route
               exact
               path='/registro'
-              element={!user ? <Register /> : <Navigate to='/' replace />}
+              element={!user ? <SignUpPage /> : <Navigate to='/' replace />}
+            />
+            <Route
+              exact
+              path='/tareas'
+              element={
+                user ? <TodoApp /> : <Navigate to='/inicio-de-sesion' replace />
+              }
             />
           </Routes>
         </Router>

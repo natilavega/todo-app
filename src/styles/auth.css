@@ -1,0 +1,84 @@
+.login-page,
+.sign-up-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.error-group {
+  color: #b98383;
+  display: flex;
+  flex-direction: row;
+}
+
+.error-message {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-left: 0.875rem;
+}
+
+.form {
+  margin: 2.5rem 0;
+}
+
+.form .control-group {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.form .control-group label {
+  color: #8396b9;
+  font-size: 0.875rem;
+  margin-bottom: 0.625rem;
+}
+
+.form .control-group input {
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #8396b9;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  opacity: 0.6;
+  width: 100%;
+}
+
+.form .control-group input:focus {
+  border-bottom: 2px solid #ffffff;
+}
+.form .control-group input:focus + label {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.form .form-btn {
+  background-color: #8396b9;
+  border: 1px solid #8396b9;
+  color: #211e26;
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.btn-switch,
+.btn-switch a,
+.btn-social {
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  padding: 1rem 0;
+}
+
+.btn-switch a:hover,
+.btn-social:hover {
+  color: #8396b9;
+}

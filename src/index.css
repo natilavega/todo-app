@@ -23,9 +23,11 @@ input:focus {
 
 #root {
   background-color: #211e26;
-  color: #f0f7ee;
-  min-height: 100vh;
-  padding: 2em 1em 0.5em 1em;
+  color: #ffffff;
+}
+#app {
+  height: 100vh;
+  padding: 0 1.25rem;
 }
 @media (min-width: 540px) {
   #app {
@@ -42,6 +44,7 @@ input:focus {
   min-height: 80vh;
 }
 
+/*
 .form-group {
   border-bottom: 2px solid #8cabbe;
   margin-bottom: 3em;
@@ -52,3 +55,4 @@ input:focus {
   font-size: 14px;
   margin-bottom: 0.75em;
 }
+*/

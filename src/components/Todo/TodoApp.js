@@ -72,30 +72,9 @@ const TodoApp = () => {
         <div className='loading'>Cargando...</div>
       ) : (
         <>
-          <div className='profile'>
-            {userData.photo ? (
-              <img src={userData.photo} alt='' className='profile-pic' />
-            ) : (
-              <FontAwesomeIcon icon={faUser} />
-            )}
-            <div className='profile-name'>{userData.name}</div>
-            <button className='logout' onClick={logout}>
-              <FontAwesomeIcon icon={faSignOutAlt} />
-            </button>
-          </div>
-
-          <AddTodo addTodo={addTodo} />
-
-          {todos.length > 0 ? (
-            <ul id='list'>{showTodos}</ul>
-          ) : (
-            <div id='empty' className='fadeIn'>
-              <div>
-                <FontAwesomeIcon icon={faClipboardCheck} />
-              </div>
-              <p>No hay tareas pendientes.</p>
-            </div>
-          )}
+          <button className='logout' onClick={logout}>
+            <FontAwesomeIcon icon={faSignOutAlt} />
+          </button>
         </>
       )}
     </>

@@ -4,17 +4,18 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import UserContext from './contexts/user';
+import AuthContext from './contexts/auth';
 import useAuthListener from './hooks/useAuthListener';
-import TodoApp from './components/Todo/TodoApp';
+
 import LoginPage from './pages/loginPage';
 import SignUpPage from './pages/signUpPage';
+import DashboardPage from './pages/dashboardPage';
 
 const App = () => {
   const { user } = useAuthListener();
 
   return (
-    <UserContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user }}>
       <div id='app'>
         <Router>
           <Routes>
@@ -44,13 +45,17 @@ const App = () => {
               exact
               path='/tareas'
               element={
-                user ? <TodoApp /> : <Navigate to='/inicio-de-sesion' replace />
+                user ? (
+                  <DashboardPage authUser={user} />
+                ) : (
+                  <Navigate to='/inicio-de-sesion' replace />
+                )
               }
             />
           </Routes>
         </Router>
       </div>
-    </UserContext.Provider>
+    </AuthContext.Provider>
   );
 };
 

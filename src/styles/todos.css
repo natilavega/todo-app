@@ -1,0 +1,44 @@
+.list-empty {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+}
+
+.list-empty div {
+  color: #ffffff;
+  font-size: 3rem;
+  opacity: 0.4;
+}
+
+.list-empty p {
+  margin-top: 1rem;
+}
+
+.list-todo {
+  background-color: rgba(131, 150, 185, 0.2);
+  margin: 0.5rem 0;
+  padding: 1rem;
+}
+
+.fadeIn {
+  -webkit-animation: fadeIn 2s linear;
+  animation: fadeIn 2s linear;
+  opacity: 1;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,36 @@
+.add-todo .control-group {
+  border-bottom: 2px solid #8396b9;
+}
+
+.add-todo .control-group:focus-within {
+  border-bottom: 2px solid #ffffff;
+}
+
+.add-todo .control-group label {
+  color: #ffffff;
+  font-size: 0.875rem;
+  margin-bottom: 0.625rem;
+}
+
+.add-todo .control-group .group_row input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  width: 90%;
+}
+
+.add-todo .control-group .group_row button {
+  background: transparent;
+  border: none;
+  color: #8396b9;
+  font-size: 1.25rem;
+  text-align: right;
+  width: 10%;
+}
+
+.add-todo .control-group .group_row button:hover {
+  color: #ffffff;
+}

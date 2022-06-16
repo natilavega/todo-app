@@ -25,10 +25,12 @@ input:focus {
   background-color: #211e26;
   color: #ffffff;
 }
+
 #app {
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 1.25rem;
 }
+
 @media (min-width: 540px) {
   #app {
     margin: 0 auto;
@@ -44,15 +46,6 @@ input:focus {
   min-height: 80vh;
 }
 
-/*
-.form-group {
-  border-bottom: 2px solid #8cabbe;
-  margin-bottom: 3em;
-  padding-bottom: 3em;
+section {
+  padding-bottom: 3rem;
 }
-.input-group label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 0.75em;
-}
-*/

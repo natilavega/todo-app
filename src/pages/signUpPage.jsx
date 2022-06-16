@@ -39,7 +39,7 @@ const SignUpPage = () => {
         </div>
       )}
 
-      <form onSubmit={handleSignUp} method='POST' className='form'>
+      <form onSubmit={handleSignUp} method='POST' className='auth'>
         <div className='control-group'>
           <input
             type='text'

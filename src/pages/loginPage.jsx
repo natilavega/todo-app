@@ -44,7 +44,7 @@ const LoginPage = () => {
         </div>
       )}
 
-      <form onSubmit={handleLogin} method='POST' className='form'>
+      <form onSubmit={handleLogin} method='POST' className='auth'>
         <div className='control-group'>
           <input
             type='text'

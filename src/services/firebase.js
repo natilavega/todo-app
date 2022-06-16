@@ -41,6 +41,7 @@ const setGoogleUser = (user) => {
   const docRef = doc(db, 'users', user.uid);
 
   setDoc(docRef, {
+    uid: user.uid,
     name: user.displayName,
     authProvider: 'google',
     email: user.email,
@@ -68,6 +69,7 @@ const setLocalUser = (user, name) => {
   const docRef = doc(db, 'users', user.uid);
 
   setDoc(docRef, {
+    uid: user.uid,
     name,
     authProvider: 'local',
     email: user.email,
@@ -75,6 +77,15 @@ const setLocalUser = (user, name) => {
     todos: [],
   });
 };
+
+// get current user by ID
+export async function getUserById(userId) {
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, where('uid', '==', userId));
+  const result = await getDocs(q);
+
+  return result.docs[0].data();
+}
 
 // get current user data in realtime
 export const getUserData = (uid, callback) => {
@@ -90,19 +101,19 @@ export const logout = () => {
 };
 
 // add todo
-export const addData = async (uid, todoId, content) => {
+export const addTodo = async (uid, todoId, content) => {
   const todoRef = doc(db, 'users', uid);
 
   await updateDoc(todoRef, {
-    todos: arrayUnion({ id: todoId, todo: content }),
+    todos: arrayUnion({ todoId, todo: content }),
   });
 };
 
 // delete todo
-export const deleteData = async (uid, todo) => {
+export const deleteTodo = async (uid, todoId, todo) => {
   const todoRef = doc(db, 'users', uid);
 
   await updateDoc(todoRef, {
-    todos: arrayRemove({ id: todo.id, todo: todo.todo }),
+    todos: arrayRemove({ todoId, todo }),
   });
 };

@@ -14,7 +14,7 @@ const SignUpPage = () => {
   const isDisabled = name === '' || email === '' || password === '';
 
   useEffect(() => {
-    document.title = 'Registro';
+    document.title = 'Sign Up — TooDo';
   }, []);
 
   const handleSignUp = async (e) => {
@@ -47,7 +47,7 @@ const SignUpPage = () => {
             value={name}
             id='name'
           />
-          <label htmlFor='name'>Nombre:</label>
+          <label htmlFor='name'>Name:</label>
         </div>
         <div className='control-group'>
           <input
@@ -56,7 +56,7 @@ const SignUpPage = () => {
             value={email}
             id='email'
           />
-          <label htmlFor='email'>Correo electrónico:</label>
+          <label htmlFor='email'>Email Address:</label>
         </div>
         <div className='control-group'>
           <input
@@ -65,7 +65,7 @@ const SignUpPage = () => {
             value={password}
             id='password'
           />
-          <label htmlFor='password'>Contraseña:</label>
+          <label htmlFor='password'>Password:</label>
         </div>
 
         <button
@@ -74,16 +74,16 @@ const SignUpPage = () => {
           className='form-btn'
           style={{ opacity: isDisabled ? '0.5' : '1' }}
         >
-          Registrarse
+          Sign Up
         </button>
       </form>
 
       <div className='btn-switch'>
-        <Link to='/'>Iniciar sesión</Link>
+        <Link to='/'>Login</Link>
       </div>
 
       <div className='btn-social' onClick={signInWithGoogle}>
-        Ingresar con Google
+        Sign In with Google
       </div>
     </div>
   );

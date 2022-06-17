@@ -23,32 +23,30 @@ const App = () => {
               path='/'
               element={
                 user ? (
-                  <Navigate to='/tareas' replace />
+                  <Navigate to='/tasks' replace />
                 ) : (
-                  <Navigate to='/inicio-de-sesion' replace />
+                  <Navigate to='/login' replace />
                 )
               }
             />
             <Route
               exact
-              path='/inicio-de-sesion'
-              element={
-                !user ? <LoginPage /> : <Navigate to='/tareas' replace />
-              }
+              path='/login'
+              element={!user ? <LoginPage /> : <Navigate to='/tasks' replace />}
             />
             <Route
               exact
-              path='/registro'
+              path='/signup'
               element={!user ? <SignUpPage /> : <Navigate to='/' replace />}
             />
             <Route
               exact
-              path='/tareas'
+              path='/tasks'
               element={
                 user ? (
                   <DashboardPage authUser={user} />
                 ) : (
-                  <Navigate to='/inicio-de-sesion' replace />
+                  <Navigate to='/login' replace />
                 )
               }
             />

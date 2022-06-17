@@ -13,7 +13,7 @@ const LoginPage = () => {
   const isDisabled = email === '' || password === '';
 
   useEffect(() => {
-    document.title = 'Inicio de Sesión';
+    document.title = 'Login — TooDo';
   }, []);
 
   const handleLogin = async (e) => {
@@ -52,7 +52,7 @@ const LoginPage = () => {
             value={email}
             id='email'
           />
-          <label htmlFor='email'>Correo electrónico:</label>
+          <label htmlFor='email'>Email Address:</label>
         </div>
         <div className='control-group'>
           <input
@@ -61,7 +61,7 @@ const LoginPage = () => {
             value={password}
             id='password'
           />
-          <label htmlFor='password'>Contraseña:</label>
+          <label htmlFor='password'>Password:</label>
         </div>
         <button
           disabled={isDisabled}
@@ -69,16 +69,16 @@ const LoginPage = () => {
           className='form-btn'
           style={{ opacity: isDisabled ? '0.5' : '1' }}
         >
-          Iniciar Sesión
+          Login
         </button>
       </form>
 
       <div className='btn-switch'>
-        <Link to='/registro'>Registrarse</Link>
+        <Link to='/signup'>Sign Up</Link>
       </div>
 
       <div className='btn-social' onClick={handleGoogleLogin}>
-        Ingresar con Google
+        Sign In with Google
       </div>
     </div>
   );

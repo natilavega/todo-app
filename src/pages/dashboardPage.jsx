@@ -8,13 +8,13 @@ const DashboardPage = ({ authUser }) => {
   const { user } = useUser(authUser.uid);
 
   useEffect(() => {
-    document.title = 'Tareas';
+    document.title = 'Tasks — TooDo';
   }, []);
 
   return (
     <>
       {!user.uid ? (
-        <div className='loading'>Cargando...</div>
+        <div className='loading'>Loading...</div>
       ) : (
         <>
           <Header name={user.name} photo={user.photo} />

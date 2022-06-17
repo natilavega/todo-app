@@ -25,7 +25,7 @@ const AddTodo = ({ handleSubmit }) => {
     <section>
       <form onSubmit={onSubmit} method='POST' className='form add-todo'>
         <div className='control-group'>
-          <label htmlFor='add-todo'>Nueva tarea:</label>
+          <label htmlFor='add-todo'>New Task:</label>
           <div className='group_row'>
             <input
               type='text'

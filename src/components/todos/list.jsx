@@ -25,7 +25,7 @@ const TodosList = ({ todos, handleDelete }) => {
           <div>
             <FontAwesomeIcon icon={faClipboardCheck} />
           </div>
-          <p>No hay tareas pendientes.</p>
+          <p>No pending tasks.</p>
         </div>
       )}
     </section>

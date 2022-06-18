@@ -1,48 +1,38 @@
-# toodo app
+# toodo
 
-**Not so classic CRUD app.**
+To-do list web app built in React and Firebase.
 
-Designed and developed by Nati Lavega.
+[Demo version](https://toodo.surge.sh/)
 
-See it live [here](https://toodo.surge.sh/).
+## Features
+- Login and sign up with an email and password.
+- Sign in with a Google account.
+- Access to a private dashboard page.
+- Add new tasks to the list.
+- Delete tasks with one click.
 
-<img height="500" src="https://user-images.githubusercontent.com/35309830/160416674-6915c022-f568-45ae-8712-1515d014e536.png" />
+## About
+Toodo is a to-do list web app. It is built in React v18 using only functional components, custom hooks, and contexts. The app uses Firebase authentication and Firestore real-time database services.
 
-## About the project
+The app is responsive with a functional minimalism UI design. 
 
-**tododo** is a to-do list web application. It allows users to add and remove items from the list with a few clicks.
-
-The project is developed in **React**. It uses [React Hooks](https://reactjs.org/docs/hooks-intro.html), [React Router](https://reactrouter.com/), and [Firebase](https://firebase.google.com/) services.
-
-**Authentication**: To enter, users can create an account with email and password or sign in with their Google account.
-
-**Firestore**: The connection with the database in real-time allows each user to work with their own data and have the information always available.
-
-The [config.js](./src/firebase/config.js) file contains all the Firebase configurations. The [api.js](./src/firebase/api.js) file handles all connections to the server.
-
-##### React
-
+## Development
+#### React
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-##### Create React App
-
+#### Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-##### Firebase
-
+#### Firebase
 Learn more about the realtime database, authentication, and other Firebase services in the [Firebase documentation](https://firebase.google.com/docs).
 
-##### Surge
-
+#### Surge
 This project was deplored for free with [Surge](https://surge.sh/).
 
 Learn more in the [Surge documentation](https://surge.sh/help/).
 
 
-## Contact
-
-Lets chat! Ideas, comments, suggestions, contact me at [LinkedIn](https://www.linkedin.com/in/natilavega/) or [Twitter](https://twitter.com/natilavega).
-
-To see my work, check my [portfolio](https://natilavega.github.io/).
+## Disclaimer
+The [Demo version](https://toodo.surge.sh/) is for presentational purposes. It does not have a proper security configuration. For that reason, it is possible to sign up with a fake email address. That way, users can enjoy the experience without any risk.

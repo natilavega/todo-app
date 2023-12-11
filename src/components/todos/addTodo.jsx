@@ -1,50 +1,47 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import '../../styles/addTodo.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import '../../styles/addTodo.css'
 
-const AddTodo = ({ handleSubmit }) => {
-  const [content, setContent] = useState('');
+export function AddTodo ( { addTodo } ) {
+  const [ newTodo, setNewTodo ] = useState( '' )
 
-  const handleChange = (e) => {
-    setContent(e.target.value);
-  };
+  const handleChange = ( event ) => {
+    const input = event.target.value
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+    if ( input.startsWith( ' ' ) ) return
+    setNewTodo( input )
+  }
 
-    content.trim();
-    if (content) {
-      handleSubmit(content);
-    }
-    setContent('');
-  };
+  const handleSubmit = ( event ) => {
+    event.preventDefault()
+
+    addTodo( newTodo )
+    setNewTodo( '' )
+  }
 
   return (
     <section>
-      <form onSubmit={onSubmit} method='POST' className='form add-todo'>
+      <form onSubmit={ handleSubmit } className='form add-todo'>
         <div className='control-group'>
-          <label htmlFor='add-todo'>New Task:</label>
+          <label htmlFor='new-todo'>Nueva Tarea:</label>
           <div className='group_row'>
             <input
-              type='text'
-              name='add-todo'
-              onChange={handleChange}
-              value={content}
+              name='new-todo'
+              onChange={ handleChange }
+              value={ newTodo }
             />
             <button type='submit'>
-              <FontAwesomeIcon icon={faPlus} />
+              <FontAwesomeIcon icon={ faPlus } />
             </button>
           </div>
         </div>
       </form>
     </section>
-  );
-};
-
-export default AddTodo;
+  )
+}
 
 AddTodo.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-};
+  addTodo: PropTypes.func.isRequired,
+}

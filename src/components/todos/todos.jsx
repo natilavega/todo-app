@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { addTodo, deleteTodo } from '../../services/firebase';
 import AddTodo from './addTodo';
-import TodosList from './list';
+import { TodosList } from './list';
 
 const Todos = ({ uid, allTodos }) => {
   const [todos, setTodos] = useState(allTodos);

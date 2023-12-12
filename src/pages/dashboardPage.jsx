@@ -1,15 +1,14 @@
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import useUser from '../hooks/useUser';
-import Header from '../components/header';
-import Todos from '../components/todos/todos';
+import { useEffect } from 'react'
+import { useUser } from '../hooks/useUser'
+import Header from '../components/header'
+import Todos from '../components/todos/todos'
 
-const DashboardPage = ({ authUser }) => {
-  const { user } = useUser(authUser.uid);
+export function DashboardPage () {
+  const { user } = useUser()
 
-  useEffect(() => {
-    document.title = 'Tasks — TooDo';
-  }, []);
+  useEffect( () => {
+    document.title = 'Tasks — TooDo'
+  }, [] )
 
   return (
     <>
@@ -17,16 +16,10 @@ const DashboardPage = ({ authUser }) => {
         <div className='loading'>Loading...</div>
       ) : (
         <>
-          <Header name={user.name} photo={user.photo} />
-          <Todos uid={user.uid} allTodos={user.todos} />
+          <Header name={ user.name } photo={ user.photo } />
+          <Todos uid={ user.uid } allTodos={ user.todos } />
         </>
       )}
     </>
-  );
-};
-
-export default DashboardPage;
-
-DashboardPage.propTypes = {
-  authUser: PropTypes.object.isRequired,
-};
+  )
+}

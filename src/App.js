@@ -2,59 +2,61 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
-} from 'react-router-dom';
-import AuthContext from './contexts/auth';
-import useAuthListener from './hooks/useAuthListener';
+  Navigate
+} from 'react-router-dom'
+import { AuthProvider } from './contexts/auth'
+import { useAuthListener } from './hooks/useAuthListener'
 
 import LoginPage from './pages/loginPage';
 import SignUpPage from './pages/signUpPage';
-import DashboardPage from './pages/dashboardPage';
+import { DashboardPage } from './pages/dashboardPage';
 
-const App = () => {
-  const { user } = useAuthListener();
+export function App () {
+  const { authUser } = useAuthListener()
 
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthProvider>
       <div id='app'>
         <Router>
           <Routes>
             <Route
               path='/'
               element={
-                user ? (
-                  <Navigate to='/tasks' replace />
-                ) : (
-                  <Navigate to='/login' replace />
-                )
+                authUser
+                  ? <Navigate to='/tasks' replace />
+                  : <Navigate to='/login' replace />
               }
             />
             <Route
               exact
               path='/login'
-              element={!user ? <LoginPage /> : <Navigate to='/tasks' replace />}
+              element={
+                !authUser
+                  ? <LoginPage />
+                  : <Navigate to='/tasks' replace />
+              }
             />
             <Route
               exact
               path='/signup'
-              element={!user ? <SignUpPage /> : <Navigate to='/' replace />}
+              element={
+                !authUser
+                  ? <SignUpPage />
+                  : <Navigate to='/' replace />
+              }
             />
             <Route
               exact
               path='/tasks'
               element={
-                user ? (
-                  <DashboardPage authUser={user} />
-                ) : (
-                  <Navigate to='/login' replace />
-                )
+                authUser
+                  ? <DashboardPage />
+                  : <Navigate to='/login' replace />
               }
             />
           </Routes>
         </Router>
       </div>
-    </AuthContext.Provider>
-  );
-};
-
-export default App;
+    </AuthProvider>
+  )
+}

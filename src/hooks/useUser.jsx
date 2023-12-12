@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
-import { getUserById } from '../services/firebase';
+import { useState, useEffect, useContext } from 'react'
+import { AuthContext } from '../contexts/auth'
+import { getUserById } from '../services/firebase'
 
-const useUser = (userId) => {
-  const [user, setUser] = useState({});
+export function useUser () {
+  const { authUser } = useContext( AuthContext )
+  const [ user, setUser ] = useState( {} )
+  
+  useEffect( () => {
+    getUser()
+  }, [ authUser ] )
 
-  useEffect(() => {
-    getUser();
-  }, [userId]);
+  const getUser = () => {
+    getUserById( authUser.uid )
+      .then( ( user ) => setUser( user ) )
+  }
 
-  const getUser = async () => {
-    await getUserById(userId).then((user) => setUser(user));
-  };
-
-  return { user };
-};
-
-export default useUser;
+  return { user }
+}

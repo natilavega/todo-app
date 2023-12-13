@@ -1,25 +1,31 @@
-import { logout } from '../services/firebase';
-import '../styles/header.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useUser } from '../hooks/useUser'
+import { logout } from '../services/firebase'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowRightFromBracket,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+  faUser
+} from '@fortawesome/free-solid-svg-icons'
+import '../styles/header.css'
 
-const Header = ({ name, photo }) => {
+export function Header () {
+  const { user } = useUser()
+
   return (
     <header>
-      {photo ? (
-        <img src={photo} alt='' className='user-photo' />
-      ) : (
-        <FontAwesomeIcon icon={faUser} />
-      )}
-      <div className='user-name'>{name}</div>
-      <button className='btn-logout' onClick={logout}>
-        <FontAwesomeIcon icon={faArrowRightFromBracket} />
+      { user.photo
+        ? (
+          <img
+            src={ user.photo }
+            alt={`Perfil de ${ user.name }`}
+            className='user-photo'
+          />
+        )
+        : <FontAwesomeIcon icon={ faUser } />
+      }
+      <div className='user-name'>{ user.name }</div>
+      <button className='btn-logout' onClick={ logout }>
+        <FontAwesomeIcon icon={ faArrowRightFromBracket } />
       </button>
     </header>
-  );
-};
-
-export default Header;
+  )
+}

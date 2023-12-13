@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useUser } from '../hooks/useUser'
-import Header from '../components/header'
+import { Header } from '../components/header'
 import Todos from '../components/todos/todos'
 
 export function DashboardPage () {
@@ -16,7 +16,7 @@ export function DashboardPage () {
         <div className='loading'>Loading...</div>
       ) : (
         <>
-          <Header name={ user.name } photo={ user.photo } />
+          <Header />
           <Todos uid={ user.uid } allTodos={ user.todos } />
         </>
       )}

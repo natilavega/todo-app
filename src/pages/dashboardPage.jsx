@@ -4,7 +4,7 @@ import { Header } from '../components/header'
 import Todos from '../components/todos/todos'
 
 export function DashboardPage () {
-  const { user } = useUser()
+  const { user, error } = useUser()
 
   useEffect( () => {
     document.title = 'Tasks — TooDo'
@@ -12,14 +12,18 @@ export function DashboardPage () {
 
   return (
     <>
-      {!user.uid ? (
-        <div className='loading'>Loading...</div>
-      ) : (
-        <>
-          <Header />
-          <Todos uid={ user.uid } allTodos={ user.todos } />
-        </>
-      )}
+      { !user.uid
+        ? <div className='loading'>Loading...</div>
+        : ( error
+          ? <div className='error'>{ error }</div>
+          : (
+            <>
+              <Header name={ user.name } photo={ user.photo } />
+              <Todos uid={ user.uid } allTodos={ user.todos } />
+            </>
+          )
+        )
+      }
     </>
   )
 }

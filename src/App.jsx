@@ -7,9 +7,9 @@ import {
 import { AuthProvider } from './contexts/auth'
 import { useAuthListener } from './hooks/useAuthListener'
 
-import LoginPage from './pages/loginPage';
-import SignUpPage from './pages/signUpPage';
-import { DashboardPage } from './pages/dashboardPage';
+import LoginPage from './pages/loginPage'
+import SignUpPage from './pages/signUpPage'
+import { DashboardPage } from './pages/dashboardPage'
 
 export function App () {
   const { authUser } = useAuthListener()

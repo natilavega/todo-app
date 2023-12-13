@@ -14,8 +14,6 @@ export function useUser () {
   }, [ authUser ] )
 
   const getUser = async () => {
-    console.log('fetch')
-
     try {
       setError( null )
 

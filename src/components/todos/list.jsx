@@ -3,16 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
 import '../../styles/todos.css'
 
-export function TodosList ( { todos, handleDelete } ) {
+export function TodosList ( { todos, removeTodo } ) {
   return (
     <section>
-      { todos.length > 0 ? (
+      { todos?.length > 0 ? (
         <ul id='list'>
           { todos.map( ( todo ) => (
             <li
               className='list-todo fadeIn'
               key={ todo.todoId }
-              onClick={ () => handleDelete( todo ) }
+              onClick={ () => removeTodo( todo ) }
             >
               { todo.todo }
             </li>
@@ -32,5 +32,5 @@ export function TodosList ( { todos, handleDelete } ) {
 
 TodosList.propTypes = {
   todos: PropTypes.array.isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
 }

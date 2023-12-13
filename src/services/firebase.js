@@ -101,7 +101,7 @@ export const logout = () => {
 };
 
 // add todo
-export const addTodo = async (uid, todoId, content) => {
+export const addToDatabase = async (uid, todoId, content) => {
   const todoRef = doc(db, 'users', uid);
 
   await updateDoc(todoRef, {
@@ -110,7 +110,7 @@ export const addTodo = async (uid, todoId, content) => {
 };
 
 // delete todo
-export const deleteTodo = async (uid, todoId, todo) => {
+export const removeFromDatabase = async (uid, todoId, todo) => {
   const todoRef = doc(db, 'users', uid);
 
   await updateDoc(todoRef, {

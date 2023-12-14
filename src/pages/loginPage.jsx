@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { signInWithGoogle, LoginWithEmail } from '../services/firebase'
+import { useAuth } from '../hooks/useAuth'
 import { useField } from '../hooks/useField'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import '../styles/auth.css'
 
 export function LoginPage () {
-  const [ error, setError ] = useState( '' )
-  
+  const { login, googleLogin, error } = useAuth()
+
   const email = useField( { type: 'email' } )
   const password = useField( { type: 'password' } )
 
@@ -18,22 +18,9 @@ export function LoginPage () {
     document.title = 'Login — TooDo'
   }, [] )
 
-  const handleLogin = async ( e ) => {
-    e.preventDefault()
-
-    try {
-      await LoginWithEmail( email.value, password.value )
-    } catch ( error ) {
-      setError( error.message )
-    }
-  }
-
-  const handleGoogleLogin = () => {
-    try {
-      signInWithGoogle()
-    } catch ( error ) {
-      setError( error.message )
-    }
+  const handleSubmit = async ( event ) => {
+    event.preventDefault()
+    login( email.value, password.value )
   }
 
   return (
@@ -45,7 +32,7 @@ export function LoginPage () {
         </div>
       )}
 
-      <form onSubmit={ handleLogin } className='auth'>
+      <form onSubmit={ handleSubmit } className='auth'>
         <div className='control-group'>
           <input
             { ... email }
@@ -74,7 +61,7 @@ export function LoginPage () {
         <Link to='/signup'>Sign Up</Link>
       </div>
 
-      <div className='btn-social' onClick={ handleGoogleLogin }>
+      <div className='btn-social' onClick={ googleLogin }>
         Sign In with Google
       </div>
     </div>

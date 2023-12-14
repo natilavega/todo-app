@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { signInWithGoogle, signUpWithEmail } from '../services/firebase'
+import { useAuth } from '../hooks/useAuth'
 import { useField } from '../hooks/useField'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import '../styles/auth.css'
 
 export function SignUpPage () {
-  const [ error, setError ] = useState( '' )
+  const { googleLogin, signup, error } = useAuth()
   
   const name = useField( { type: 'text' } )
   const email = useField( { type: 'email' } )
@@ -19,16 +19,9 @@ export function SignUpPage () {
     document.title = 'Sign Up — TooDo'
   }, [] )
 
-  const handleSignUp = async ( e ) => {
-    e.preventDefault()
-
-    //TODO: check if user is already registered in db.
-
-    try {
-      await signUpWithEmail( name, email, password )
-    } catch ( error ) {
-      setError( error.message )
-    }
+  const handleSubmit = async ( event ) => {
+    event.preventDefault()
+    signup( name.value, email.value, password.value )
   }
 
   return (
@@ -40,7 +33,7 @@ export function SignUpPage () {
         </div>
       )}
 
-      <form onSubmit={ handleSignUp } className='auth'>
+      <form onSubmit={ handleSubmit } className='auth'>
         <div className='control-group'>
           <input
             { ...name }
@@ -75,7 +68,7 @@ export function SignUpPage () {
         <Link to='/'>Login</Link>
       </div>
 
-      <div className='btn-social' onClick={ signInWithGoogle }>
+      <div className='btn-social' onClick={ googleLogin }>
         Sign In with Google
       </div>
     </div>

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import '../styles/auth.css'
 
-export function SignUpPage () {
+export default function SignUpPage () {
   const { googleLogin, signup, error } = useAuth()
   
   const name = useField( { type: 'text' } )

@@ -5,7 +5,7 @@ import { Header } from '../components/header'
 import { AddTodo } from '../components/todos/addTodo'
 import { TodosList } from '../components/todos/list'
 
-export function DashboardPage () {
+export default function DashboardPage () {
   const { user, error } = useUser()
   const { todos, addTodo, removeTodo } = useTodos( { user } )
 

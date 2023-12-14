@@ -4,21 +4,26 @@ import { useTodos } from '../hooks/useTodos'
 import { Header } from '../components/header'
 import { AddTodo } from '../components/todos/addTodo'
 import { TodosList } from '../components/todos/list'
+import Loading from '../components/loading'
 
 export default function DashboardPage () {
   const { user, error } = useUser()
   const { todos, addTodo, removeTodo } = useTodos( { user } )
 
   useEffect( () => {
-    document.title = 'Tasks — TooDo'
+    document.title = 'Tareas — TooDo'
   }, [] )
 
   return (
-    <>
+    <section
+      className='flex flex-col min-h-screen container mx-auto'
+    >
       { !user.uid
-        ? <div className='loading'>Loading...</div>
+        ? <Loading />
         : ( error
-          ? <div className='error'>{ error }</div>
+          ? <div className='flex justify-center items-center h-full'>
+            { error }
+          </div>
           : (
             <>
               <Header name={ user.name } photo={ user.photo } />
@@ -28,6 +33,6 @@ export default function DashboardPage () {
           )
         )
       }
-    </>
+    </section>
   )
 }

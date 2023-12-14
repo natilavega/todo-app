@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import { AuthProvider } from './contexts/auth'
 import { useAuthListener } from './hooks/useAuthListener'
+import Loading from './components/loading'
 
 const LoginPage = lazy( () => import( './pages/loginPage' ) )
 const SignUpPage = lazy( () => import( './pages/signUpPage' ) )
@@ -17,9 +18,11 @@ export function App () {
 
   return (
     <AuthProvider>
-      <div id='app'>
+      <main
+        className='bg-white dark:bg-slate-800 text-slate-900 dark:text-white'
+      >
         <Router>
-          <Suspense fallback={ <div className='loading'>Loading...</div> }>
+          <Suspense fallback={ <Loading /> }>
             <Routes>
               <Route
                 path='/'
@@ -59,7 +62,7 @@ export function App () {
             </Routes>
           </Suspense>
         </Router>
-      </div>
+      </main>
     </AuthProvider>
   )
 }

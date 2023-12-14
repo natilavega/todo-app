@@ -4,7 +4,6 @@ import { useAuth } from '../hooks/useAuth'
 import { useField } from '../hooks/useField'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
-import '../styles/auth.css'
 
 export default function LoginPage () {
   const { login, googleLogin, error } = useAuth()
@@ -15,7 +14,7 @@ export default function LoginPage () {
   const isDisabled = email.value === '' || password.value === ''
 
   useEffect( () => {
-    document.title = 'Login — TooDo'
+    document.title = 'Iniciar Sesión — TooDo'
   }, [] )
 
   const handleSubmit = async ( event ) => {
@@ -24,46 +23,73 @@ export default function LoginPage () {
   }
 
   return (
-    <div className='login-page'>
+    <section
+      className='flex flex-col justify-center items-center min-h-screen container mx-auto'
+    >
       { error && (
-        <div className='error-group'>
-          <FontAwesomeIcon icon={ faCircleExclamation } />
-          <p className='error-message'>{ error }</p>
+        <div className='flex flex-row'>
+          <FontAwesomeIcon
+            icon={ faCircleExclamation }
+            className='text-red-800 dark:text-red-400'
+          />
+          <p
+            className='text-sm font-semibold ml-3.5 text-red-800 dark:text-red-400'
+          >
+            { error }
+          </p>
         </div>
       )}
 
-      <form onSubmit={ handleSubmit } className='auth'>
-        <div className='control-group'>
+      <form
+        onSubmit={ handleSubmit }
+        className='mt-6 mb-10 mx-auto w-full md:w-1/3'
+      >
+        <div className='flex flex-col gap-1.5 mb-4'>
+          <label
+            htmlFor='email'
+            className='text-sm text-slate-500'
+          >
+            Correo Electrónico:
+          </label>
           <input
             { ... email }
             id='email'
+            className='bg-transparent border border-slate-500 rounded-md p-2.5'
           />
-          <label htmlFor='email'>Email Address:</label>
         </div>
-        <div className='control-group'>
+        <div className='flex flex-col gap-1.5 mb-6'>
+          <label
+            htmlFor='password'
+            className='text-sm text-slate-500'
+          >
+            Contraseña:
+          </label>
           <input
             { ... password }
             id='password'
+            className='bg-transparent border border-slate-500 rounded-md p-2.5'
           />
-          <label htmlFor='password'>Password:</label>
         </div>
         <button
           disabled={ isDisabled }
-          type='submit'
-          className='form-btn'
-          style={ { opacity: isDisabled ? '0.5' : '1' } }
+          className='bg-slate-800 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold uppercase tracking-wider w-full py-3 rounded-md cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed'
         >
-          Login
+          Iniciar Sesión
         </button>
       </form>
 
-      <div className='btn-switch'>
-        <Link to='/signup'>Sign Up</Link>
+      <div
+        className='text-slate-500 hover:text-slate-900 dark:hover:text-white font-semibold mb-2.5'
+      >
+        <Link to='/signup'>Registrarse</Link>
       </div>
 
-      <div className='btn-social' onClick={ googleLogin }>
-        Sign In with Google
-      </div>
-    </div>
+      <button
+        onClick={ googleLogin }
+        className='text-slate-500 hover:text-slate-900 dark:hover:text-white font-semibold'
+      >
+        Ingresar con Google
+      </button>
+    </section>
   )
 }

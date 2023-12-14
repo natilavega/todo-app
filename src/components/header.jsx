@@ -4,23 +4,26 @@ import {
   faArrowRightFromBracket,
   faUser
 } from '@fortawesome/free-solid-svg-icons'
-import '../styles/header.css'
 
 export function Header ( { name, photo } ) {
   return (
-    <header>
+    <header
+      className='flex flex-row justify-between items-center mt-6 md:mt-10 mb-6 mx-auto w-full md:w-2/4'
+    >
+      <div className='flex flex-row items-center gap-4'>
       { photo
         ? (
           <img
             src={ photo }
             alt={`Perfil de ${ name }`}
-            className='user-photo'
+            className='h-6 w-6 rounded-full'
           />
         )
         : <FontAwesomeIcon icon={ faUser } />
       }
-      <div className='user-name'>{ name }</div>
-      <button className='btn-logout' onClick={ logout }>
+        <h3>{ name }</h3>
+      </div>
+      <button onClick={ logout }>
         <FontAwesomeIcon icon={ faArrowRightFromBracket } />
       </button>
     </header>

@@ -1,78 +1,71 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { signInWithGoogle, signUpWithEmail } from '../services/firebase';
-import '../styles/auth.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { signInWithGoogle, signUpWithEmail } from '../services/firebase'
+import { useField } from '../hooks/useField'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import '../styles/auth.css'
 
-const SignUpPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+export function SignUpPage () {
+  const [ error, setError ] = useState( '' )
+  
+  const name = useField( { type: 'text' } )
+  const email = useField( { type: 'email' } )
+  const password = useField( { type: 'password' } )
 
-  const isDisabled = name === '' || email === '' || password === '';
+  const isDisabled = name.value === '' || email.value === '' || password.value === ''
 
-  useEffect(() => {
-    document.title = 'Sign Up — TooDo';
-  }, []);
+  useEffect( () => {
+    document.title = 'Sign Up — TooDo'
+  }, [] )
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
+  const handleSignUp = async ( e ) => {
+    e.preventDefault()
 
     //TODO: check if user is already registered in db.
 
     try {
-      await signUpWithEmail(name, email, password);
-    } catch (error) {
-      setPassword('');
-      setError(error.message);
+      await signUpWithEmail( name, email, password )
+    } catch ( error ) {
+      setError( error.message )
     }
-  };
+  }
 
   return (
     <div className='sign-up-page'>
       {error && (
         <div className='error-group'>
-          <FontAwesomeIcon icon={faCircleExclamation} />
-          <p className='error-message'>{error}</p>
+          <FontAwesomeIcon icon={ faCircleExclamation } />
+          <p className='error-message'>{ error }</p>
         </div>
       )}
 
-      <form onSubmit={handleSignUp} method='POST' className='auth'>
+      <form onSubmit={ handleSignUp } className='auth'>
         <div className='control-group'>
           <input
-            type='text'
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            { ...name }
             id='name'
           />
           <label htmlFor='name'>Name:</label>
         </div>
         <div className='control-group'>
           <input
-            type='text'
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            { ...email }
             id='email'
           />
           <label htmlFor='email'>Email Address:</label>
         </div>
         <div className='control-group'>
           <input
-            type='password'
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
+            { ...password }
             id='password'
           />
           <label htmlFor='password'>Password:</label>
         </div>
-
         <button
-          disabled={isDisabled}
-          type='submit'
+          disabled={ isDisabled }
           className='form-btn'
-          style={{ opacity: isDisabled ? '0.5' : '1' }}
+          style={ { opacity: isDisabled ? '0.5' : '1' } }
         >
           Sign Up
         </button>
@@ -82,11 +75,9 @@ const SignUpPage = () => {
         <Link to='/'>Login</Link>
       </div>
 
-      <div className='btn-social' onClick={signInWithGoogle}>
+      <div className='btn-social' onClick={ signInWithGoogle }>
         Sign In with Google
       </div>
     </div>
-  );
-};
-
-export default SignUpPage;
+  )
+}

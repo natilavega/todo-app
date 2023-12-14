@@ -1,92 +1,109 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { signInWithGoogle, signUpWithEmail } from '../services/firebase';
-import '../styles/auth.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
+import { useField } from '../hooks/useField'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
-const SignUpPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+export default function SignUpPage () {
+  const { googleLogin, signup, error } = useAuth()
+  
+  const name = useField( { type: 'text' } )
+  const email = useField( { type: 'email' } )
+  const password = useField( { type: 'password' } )
 
-  const isDisabled = name === '' || email === '' || password === '';
+  const isDisabled = name.value === '' || email.value === '' || password.value === ''
 
-  useEffect(() => {
-    document.title = 'Sign Up — TooDo';
-  }, []);
+  useEffect( () => {
+    document.title = 'Registro — TooDo'
+  }, [] )
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-
-    //TODO: check if user is already registered in db.
-
-    try {
-      await signUpWithEmail(name, email, password);
-    } catch (error) {
-      setPassword('');
-      setError(error.message);
-    }
-  };
+  const handleSubmit = async ( event ) => {
+    event.preventDefault()
+    signup( name.value, email.value, password.value )
+  }
 
   return (
-    <div className='sign-up-page'>
+    <section
+      className='flex flex-col justify-center items-center min-h-screen container mx-auto'
+    >
       {error && (
-        <div className='error-group'>
-          <FontAwesomeIcon icon={faCircleExclamation} />
-          <p className='error-message'>{error}</p>
+        <div className='flex flex-row'>
+          <FontAwesomeIcon
+            icon={ faCircleExclamation }
+            className='text-red-800 dark:text-red-400'
+          />
+          <p
+            className='text-sm font-semibold ml-3.5 text-red-800 dark:text-red-400'
+          >
+            { error }
+          </p>
         </div>
       )}
 
-      <form onSubmit={handleSignUp} method='POST' className='auth'>
-        <div className='control-group'>
+      <form
+        onSubmit={ handleSubmit }
+        className='mt-6 mb-10 mx-auto w-full md:w-1/3'
+      >
+        <div className='flex flex-col gap-1.5 mb-4'>
+          <label
+            htmlFor='name'
+            className='text-sm text-slate-500'
+          >
+            Nombre:
+          </label>
           <input
-            type='text'
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            { ...name }
             id='name'
+            className='bg-transparent border border-slate-500 rounded-md p-2.5'
           />
-          <label htmlFor='name'>Name:</label>
         </div>
-        <div className='control-group'>
+        <div className='flex flex-col gap-1.5 mb-4'>
+          <label
+            htmlFor='email'
+            className='text-sm text-slate-500'
+          >
+            Correo Electrónico:
+          </label>
           <input
-            type='text'
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            { ...email }
             id='email'
+            className='bg-transparent border border-slate-500 rounded-md p-2.5'
           />
-          <label htmlFor='email'>Email Address:</label>
         </div>
-        <div className='control-group'>
+        <div className='flex flex-col gap-1.5 mb-6'>
+          <label
+            htmlFor='password'
+            className='text-sm text-slate-500'
+          >
+            Contraseña:
+          </label>
           <input
-            type='password'
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
+            { ...password }
             id='password'
+            className='bg-transparent border border-slate-500 rounded-md p-2.5'
           />
-          <label htmlFor='password'>Password:</label>
         </div>
-
         <button
-          disabled={isDisabled}
-          type='submit'
-          className='form-btn'
-          style={{ opacity: isDisabled ? '0.5' : '1' }}
+          disabled={ isDisabled }
+          className='bg-slate-800 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold uppercase tracking-wider w-full p-3 rounded-md cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed'
         >
-          Sign Up
+          Registrarse
         </button>
       </form>
 
-      <div className='btn-switch'>
-        <Link to='/'>Login</Link>
+      <div
+        className='text-slate-500 hover:text-slate-900 dark:hover:text-white font-semibold mb-2.5'
+      >
+        <Link to='/'>Iniciar Sesión</Link>
       </div>
 
-      <div className='btn-social' onClick={signInWithGoogle}>
-        Sign In with Google
-      </div>
-    </div>
-  );
-};
-
-export default SignUpPage;
+      <button
+        onClick={ googleLogin }
+        className='text-slate-500 hover:text-slate-900 dark:hover:text-white font-semibold mb-1.5'
+      >
+        Ingresar con Google
+      </button>
+    </section>
+  )
+}

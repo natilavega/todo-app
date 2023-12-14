@@ -1,32 +1,38 @@
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
-import '../../styles/todos.css'
 
 export function TodosList ( { todos, removeTodo } ) {
   return (
-    <section>
+    <>
       { todos?.length > 0 ? (
-        <ul id='list'>
+        <ul
+          className='flex flex-col gap-1.5 mt-6 mx-auto w-full md:w-2/4'
+        >
           { todos.map( ( todo ) => (
             <li
-              className='list-todo fadeIn'
               key={ todo.todoId }
               onClick={ () => removeTodo( todo ) }
+              className='bg-slate-400 dark:bg-slate-600 rounded-md p-2.5 cursor-pointer'
             >
               { todo.todo }
             </li>
           ) ) }
         </ul>
       ) : (
-        <div className='list-empty fadeIn'>
+        <div
+          className='flex flex-col items-center gap-4 mt-20 mx-auto w-full md:w-2/4 opacity-50'
+        >
           <div>
-            <FontAwesomeIcon icon={ faClipboardCheck } />
+            <FontAwesomeIcon
+              icon={ faClipboardCheck }
+              className='text-5xl'
+            />
           </div>
           <p>No hay tareas pendientes.</p>
         </div>
       ) }
-    </section>
+    </>
   )
 }
 

@@ -1,38 +1,65 @@
-# toodo
+# 📋 Lista de Tareas
 
-To-do list web app built in React and Firebase.
+Esta aplicación de tareas te permite gestionar tus actividades diarias de manera fácil y eficiente.
 
-[Demo version](https://toodo.surge.sh/)
+### Características
 
-## Features
-- Login and sign up with an email and password.
-- Sign in with a Google account.
-- Access to a private dashboard page.
-- Add new tasks to the list.
-- Delete tasks with one click.
+- **Inicio de Sesión y Registro:**
+  - Crea una cuenta utilizando tu correo electrónico y contraseña.
+  - Inicia sesión fácilmente con tu cuenta de Google.
 
-## About
-Toodo is a to-do list web app. It is built in React v18 using only functional components, custom hooks, and contexts. The app uses Firebase authentication and Firestore real-time database services.
+- **Panel de Control Privado:**
+  - Accede a un panel privado personalizado después de iniciar sesión.
+  - Gestiona tus tareas de manera eficiente y mantén un registro organizado.
 
-The app is responsive with a functional minimalism UI design. 
+- **Gestión de Tareas:**
+  - Añade nuevas tareas a tu lista con facilidad.
+  - Elimina tareas con un solo clic cuando las completes.
+ 
+### Tecnologías
 
-## Development
-#### React
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **React:** Potente biblioteca de JavaScript para construir interfaces de usuario interactivas.
+- **Tailwind CSS:** Marco de diseño utilizable y altamente personalizable.
+- **Firebase:**
+  - **Autenticación:** Ofrece una forma segura y sencilla de autenticar a los usuarios.
+  - **Base de Datos en Tiempo Real:** Almacena y sincroniza datos en tiempo real con Firebase Realtime Database.
 
-#### Create React App
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Demo
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Puedes ver una demostración en vivo [aquí](https://todo-app-smoky-chi.vercel.app/).
 
-#### Firebase
-Learn more about the realtime database, authentication, and other Firebase services in the [Firebase documentation](https://firebase.google.com/docs).
+### Instalación
 
-#### Surge
-This project was deplored for free with [Surge](https://surge.sh/).
+1. Clona el repositorio:
+   
+     ```bash
+     git clone https://github.com/natilavega/todo-app.git
 
-Learn more in the [Surge documentation](https://surge.sh/help/).
+2. Navega al directorio del proyecto:
 
+   ```bash
+   cd todo-app
 
-## Disclaimer
-The [Demo version](https://toodo.surge.sh/) is for presentational purposes. It does not have a proper security configuration. For that reason, it is possible to sign up with a fake email address. That way, users can enjoy the experience without any risk.
+3. Instala las dependencias:
+
+   ```bash
+   npm install
+
+4. Configura tu proyecto en el [Firebase Console](https://console.firebase.google.com/) y obtén las credenciales.
+
+5. Inicia el servidor de desarrollo:
+
+   ```bash
+   npm start
+
+6. Abre tu navegador y visita http://localhost:3000
+
+### Contribuciones
+
+Si deseas contribuir, haz un fork del repositorio y crea una nueva rama. ¡Se aceptan pull requests!
+
+### Agradecimientos
+
+- [Firebase](https://firebase.google.com/) por los servicios de autenticación y base de datos en tiempo real.
+- [Vercel](https://vercel.com/) por el alojamiento y despligue del proyecto.
+

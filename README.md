@@ -24,10 +24,6 @@ Esta aplicación de tareas te permite gestionar tus actividades diarias de maner
   - **Autenticación:** Ofrece una forma segura y sencilla de autenticar a los usuarios.
   - **Base de Datos en Tiempo Real:** Almacena y sincroniza datos en tiempo real con Firebase Realtime Database.
 
-### Demo
-
-Puedes ver una demostración en vivo [aquí](https://todo-app-smoky-chi.vercel.app/).
-
 ### Instalación
 
 1. Clona el repositorio:
